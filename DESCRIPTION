@@ -1,0 +1,12 @@
+Package: StabRvsPair
+Type: Package
+Title: StabRvsPair package is more convenient for bioinformatics researchers to find stable reverse gene pairs in gene expression profile.
+Version: 2.1.0
+Author: MYNong
+Maintainer: MYNong <shengxinzl123@163.com>
+Description: StabRvsPair package is more convenient for bioinformatics researchers to find stable reverse gene pairs in gene expression profile.
+License: NA
+Encoding: UTF-8
+LazyData: true
+Depends: doSNOW,parallel
+Imports: stringr

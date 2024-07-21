@@ -22,9 +22,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     
     for(i in 1:(nrow(ControlFrame)-1)){
       for(j in (i+1):nrow(ControlFrame)){
-        pair=ifelse(ControlFrame[i,]>ControlFrame[j,],1,0)
+        pair=ifelse(ControlFrame[i,]<ControlFrame[j,],0,1)
         pairRatio=sum(pair)/sampleNum
-        if(pairRatio>HighPercent){
+        if(pairRatio>HighPercent|pairRatio==HighPercent){
           StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
           ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
         }
@@ -46,9 +46,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     
     for(i in 1:(nrow(TreatFrame)-1)){
       for(j in (i+1):nrow(TreatFrame)){
-        pair=ifelse(TreatFrame[i,]>TreatFrame[j,],1,0)
+        pair=ifelse(TreatFrame[i,]<TreatFrame[j,],0,1)
         pairRatio=sum(pair)/sampleNum2
-        if(pairRatio>HighPercent){
+        if(pairRatio>HighPercent|pairRatio==HighPercent){
           StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
           TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
         }
@@ -88,9 +88,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     fun1<-function(x){
       for(i in x){
         for(j in (i+1):nrow(ControlFrame)){
-          pair=ifelse(ControlFrame[i,]>ControlFrame[j,],1,0)
+          pair=ifelse(ControlFrame[i,]<ControlFrame[j,],0,1)
           pairRatio=sum(pair)/sampleNum
-          if(pairRatio>HighPercent){
+          if(pairRatio>HighPercent|pairRatio==HighPercent){
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
           }
@@ -147,9 +147,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     fun2<-function(x){
       for(i in x){
         for(j in (i+1):nrow(TreatFrame)){
-          pair=ifelse(TreatFrame[i,]>TreatFrame[j,],1,0)
+          pair=ifelse(TreatFrame[i,]<TreatFrame[j,],0,1)
           pairRatio=sum(pair)/sampleNum2
-          if(pairRatio>HighPercent){
+          if(pairRatio>HighPercent|pairRatio==HighPercent){
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
           }
@@ -221,9 +221,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     fun1<-function(x){
       for(i in x){
         for(j in (i+1):nrow(ControlFrame)){
-          pair=ifelse(ControlFrame[i,]>ControlFrame[j,],1,0)
+          pair=ifelse(ControlFrame[i,]<ControlFrame[j,],0,1)
           pairRatio=sum(pair)/sampleNum
-          if(pairRatio>HighPercent){
+          if(pairRatio>HighPercent|pairRatio==HighPercent){
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
           }
@@ -265,9 +265,9 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
     fun2<-function(x){
       for(i in x){
         for(j in (i+1):nrow(TreatFrame)){
-          pair=ifelse(TreatFrame[i,]>TreatFrame[j,],1,0)
+          pair=ifelse(TreatFrame[i,]<TreatFrame[j,],0,1)
           pairRatio=sum(pair)/sampleNum2
-          if(pairRatio>HighPercent){
+          if(pairRatio>HighPercent|pairRatio==HighPercent){
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
           }

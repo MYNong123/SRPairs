@@ -10,6 +10,17 @@
 #'
 #' @examples FindStabRvsPair(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showbar=T)
 FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showbar=T){
+
+  print("Correction of floating point accuracy.")
+  tolerance <- .Machine$double.eps^0.5
+  pairRatio <- 0.1
+  LowPercent <- 0.1
+  if (abs(pairRatio - LowPercent) < tolerance) {
+    print(TRUE)
+  } else {
+    print(FALSE)
+  }
+  
   #Entity operation function.
   LowPercent=1-HighPercent
   library(doSNOW)
@@ -28,7 +39,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
           StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
           ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
         }
-        if(pairRatio<LowPercent){
+        if(pairRatio<LowPercent|pairRatio==LowPercent){
           StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi<Gj gene pair.
           ControlData=as.matrix(rbind(ControlData,c(StablePair,0)))
         }
@@ -52,7 +63,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
           StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
           TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
         }
-        if(pairRatio<LowPercent){
+        if(pairRatio<LowPercent|pairRatio==LowPercent){
           StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi<Gj gene pair.
           TreatData=as.matrix(rbind(TreatData,c(StablePair,0)))
         }
@@ -94,7 +105,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
           }
-          if(pairRatio<LowPercent){
+          if(pairRatio<LowPercent|pairRatio==LowPercent){
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi<Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,0)))
           }
@@ -153,7 +164,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
           }
-          if(pairRatio<LowPercent){
+          if(pairRatio<LowPercent|pairRatio==LowPercent){
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi<Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,0)))
           }
@@ -227,7 +238,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi>Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,1)))
           }
-          if(pairRatio<LowPercent){
+          if(pairRatio<LowPercent|pairRatio==LowPercent){
             StablePair=paste0(rownames(ControlFrame)[i],"&",rownames(ControlFrame)[j])      #Stable Gi<Gj gene pair.
             ControlData=as.matrix(rbind(ControlData,c(StablePair,0)))
           }
@@ -271,7 +282,7 @@ FindStabRvsPair<-function(ControlFrame,TreatFrame,HighPercent=0.9,ncore=1,showba
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi>Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,1)))
           }
-          if(pairRatio<LowPercent){
+          if(pairRatio<LowPercent|pairRatio==LowPercent){
             StablePair=paste0(rownames(TreatFrame)[i],"&",rownames(TreatFrame)[j])      #Stable Gi<Gj gene pair.
             TreatData=as.matrix(rbind(TreatData,c(StablePair,0)))
           }
